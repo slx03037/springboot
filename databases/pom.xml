@@ -16,5 +16,6 @@
         <module>doris</module>
         <module>oracle</module>
         <module>elasticsearch</module>
+        <module>mongo</module>
     </modules>
 </project>
