@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.grpc.basic.common";
+option java_outer_classname = "ProductProto";
+
+package product;
+
+service ProductInfo {
+  rpc addProduct (Product) returns (ProductId);
+  rpc getProduct(ProductId) returns(Product);
+}
+
+message Product {
+  string id = 1;
+  string name=2;
+  string description=3;
+  float price=4;
+}
+
+
+message ProductId {
+  string value = 1;
+}
+
+
+//syntax = "proto3";：
+//这个是 protocol buffers 的版本。
+//option java_multiple_files = true;
+//这个字段是可选的，如果设置为 true，表示每一个 message 文件都会有一个单独的 class 文件；否则，message 全部定义在 outerclass 文件里。
+//option java_package = "org.javaboy.grpc.demo";
+//这个字段是可选的，用于标识生成的 java 文件的 package。如果没有指定，则使用 proto 里定义的 package，如果package 也没有指定，那就会生成在根目录下。
+//option java_outer_classname = "ProductProto";
+//这个字段是可选的，用于指定 proto 文件生成的 java 类的 outerclass 类名。什么是 outerclass？简单来说就是用一个 class 文件来定义所有的 message 对应的 Java 类，这个 class 就是 outerclass；如果没有指定，默认是 proto 文件的驼峰式；
+//package product;：
+//这个属性用来定义 message 的包名。包名的含义与平台语言无关，这个 package 仅仅被用在 proto 文件中用于区分同名的 message 类型。可以理解为 message 全名的前缀，和 message 名称合起来唯一标识一个 message 类型。当我们在 proto 文件中导入其他 proto 文件的 message，需要加上 package 前缀才行。所以包名是用来唯一标识 message 的。
+//service：我们定义的跨平台方法都写在 service 中，上面的案例中我们定义了两个方法：addProduct 表示添加一件商品，参数是一个 Product 对象，返回值则是刚刚添加成功的商品的 ID；getProduct 则表示根据 ID 查询一个商品，参数是一个商品 ID，返回值则是查询到的商品对象。这里的定义相当于一个接口，将来我们要在 Java 代码中实现这个接口。
+//message：这里有点像我们在 Java 中定义类，上文中我们定义了两个类，分别是 Product 和 ProductId 两个类。这两个类在 service 中被使用。

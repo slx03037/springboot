@@ -1,0 +1,45 @@
+//protocol buffers的版本
+syntax="proto3";
+
+//这个字段是可选的，如果设置未true，表示每一个message文件都会有一个单独的class文件：否则，message全部定义在outerclass文件里
+option java_multiple_files=true;
+
+//这个字段是可选的，用于指定proto文件生成的java类的outerclass类名，
+// 什么是outerclass？简单来说就是用一个class文件定义所有的message对应的java类，这个class就是outerclass;如果没有指定，默认是proto文件的驼峰式；
+option java_package="com.xinwen.grpc.filter.common";
+
+//引入google的依赖，可以使用Google提供的StringValue,在方法参数和返回值中出现的stream，就标识这个方法的参数或者返回值是流的形式(其实就是数据可以多次传输)
+//repeated 标识字段可以重复，可以理解为java中的数据
+import "google/protobuf/wrappers.proto";
+
+//这个属性用来定义message的包名，包名的含义与平台语言无关，这个package仅仅被用在proto文件中用于区分同名的message类型。
+// 可以理解为message全名的前缀，和message名称合起来唯一标识一个message类型。当我们在proto文件导入其他proto文件的message，需要加上package前缀才行，所以包名是用来唯一标识message的
+package student;
+
+//我们定义的跨平台方法都写在service中，我们定义两个方法addStudent标识添加一位学生，参数是一个Student对象，返回值则是刚刚添加成功的学生ID
+//getStudent标识根据ID查询一个商品，参数是一个学生ID，饭返回值则是查询到商品对象，这里的定义相当于一个接口，将来我们要在java代码中实现这个接口
+service StudentService{
+  rpc addStudent(Student)returns(StudentId);
+  rpc getStudent(Student)returns(Student);
+  rpc searchBooks(google.protobuf.StringValue)returns(stream Student);
+  rpc updateStudents(stream Student) returns (google.protobuf.StringValue);
+  rpc processStudents(stream google.protobuf.StringValue) returns (stream StudentSet);
+}
+
+//这里定义了Student 在service中使用，message的类型需要注意
+message Student{
+  string id=1;
+  string name=2;
+  string description=3;
+  float score=4;
+  string class=5;
+}
+
+message StudentId{
+  string value=1;
+}
+
+message StudentSet{
+  string id=1;
+  repeated Student studentList=2;
+}
