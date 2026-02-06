@@ -22,6 +22,7 @@
         <module>registry</module>
         <module>mybatis</module>
         <module>mybatis-plus</module>
+        <module>spi</module>
     </modules>
 
 </project>
