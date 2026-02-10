@@ -1,8 +1,8 @@
 package com.grpc.jwt.server.service;
 
+import com.grpc.jwt.common.AuthConstant;
 import com.xinwen.grpc.jwt.api.LoginResponse;
 import com.xinwen.grpc.jwt.api.LoginServiceGrpc;
-import com.xinwen.grpc.jwt.common.AuthConstant;
 import io.grpc.Status;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
