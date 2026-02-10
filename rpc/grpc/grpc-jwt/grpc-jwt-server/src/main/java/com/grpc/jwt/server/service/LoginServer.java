@@ -1,6 +1,7 @@
 package com.grpc.jwt.server.service;
 
-import com.xinwen.grpc.jwt.server.interceptor.AuthInterceptor;
+
+import com.grpc.jwt.server.interceptor.AuthInterceptor;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerInterceptors;
