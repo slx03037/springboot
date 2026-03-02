@@ -7,4 +7,24 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>doris</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>doris-basic</module>
+    </modules>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

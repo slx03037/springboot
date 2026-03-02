@@ -1,0 +1,27 @@
+spring:
+  # 数据源配置（Doris 兼容 MySQL 协议）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.83:9030/demo?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root # Doris 用户名（默认 root）
+    password: NJben@1234 # Doris 密码
+    # HikariCP 连接池优化（适配 Doris 批量操作）
+    hikari:
+      maximum-pool-size: 20 # 最大连接数，根据业务调整
+      minimum-idle: 5 # 最小空闲连接
+      idle-timeout: 300000 # 空闲连接超时时间（5分钟）
+      connection-timeout: 60000 # 连接超时时间（1分钟）
+      max-lifetime: 1800000 # 连接最大生命周期（30分钟）
+
+# MyBatis-Plus 配置（可选，用于 mapper 扫描和日志）
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml # mapper.xml 路径
+  type-aliases-package: com.doris.basic.entity # 实体类包路径
+  configuration:
+    map-underscore-to-camel-case: true # 下划线转驼峰
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印 SQL 日志（测试用，生产关闭）
+
+doris:
+  fe-host: 192.168.1.83
+  query-port: 9030
+  http-port: 8030

@@ -7,4 +7,30 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>redis</artifactId>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>redis-basic</module>
+    </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.83:9030/demo?useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: NJben@1234
+
+
+doris:
+  fe-host: 192.168.1.83
+  query-port: 9030
+  http-port: 8030

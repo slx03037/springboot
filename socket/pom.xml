@@ -7,4 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>socket</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>socket-basic</module>
+        <module>websocket</module>
+
+    </modules>
 </project>

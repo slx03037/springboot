@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doris.basic.mapper.ItemVectorMapper">
+
+
+    <select id="selectSimilarItemByVec" parameterType="java.lang.String"
+            resultType="com.doris.basic.entity.ItemVector"
+    >
+
+        SELECT item_id                                           AS itemId,
+               item_name                                         AS itemName,
+               item_vec                                          AS itemVec,
+               VECTOR_DISTANCE(item_vec, #{targetVec}, 'COSINE') AS cosineDist
+        FROM item_vector
+        ORDER BY cosineDist ASC
+            LIMIT #{limit}
+
+    </select>
+</mapper>
