@@ -1,0 +1,14 @@
+spring:
+  # 数据源配置（MySQL 协议）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.73:3306/demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&&socketTimeout=60000&useSSL=false&allowPublicKeyRetrieval=true
+    username: bellon
+    password: 7654321
+    # HikariCP 连接池优化（适配 Doris 批量操作）
+    hikari:
+      maximum-pool-size: 20 # 最大连接数，根据业务调整
+      minimum-idle: 5 # 最小空闲连接
+      idle-timeout: 300000 # 空闲连接超时时间（5分钟）
+      connection-timeout: 60000 # 连接超时时间（1分钟）
+      max-lifetime: 1800000 # 连接最大生命周期（30分钟）

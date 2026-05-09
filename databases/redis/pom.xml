@@ -12,6 +12,7 @@
 
     <modules>
         <module>redis-basic</module>
+        <module>redis-spring</module>
     </modules>
 
     <dependencies>

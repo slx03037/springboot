@@ -1,0 +1,5 @@
+jwt:
+  secret: gU1lF5jB1bN1dK2kE2lH1bH3fL1gQ1gU1lF5jB1bN1d #密钥
+  expiration: 30 #token有效期(S)
+server:
+  port: 9090

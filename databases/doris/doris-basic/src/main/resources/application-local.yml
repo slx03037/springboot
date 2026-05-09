@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.1.83:9030/demo?useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: NJben@1234
+    username: bellon
+    password: 7654321
 
 
 doris:

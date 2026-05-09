@@ -7,4 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>executor</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>basic</module>
+        <module>threadpool</module>
+        <module>completablefuture</module>
+    </modules>
 </project>
