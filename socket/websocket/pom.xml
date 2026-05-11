@@ -12,7 +12,12 @@
         <module>websocket-basic</module>
         <module>websocket-categroy</module>
         <module>websocket-webflux-web</module>
-        <module>websocket-webflux-simple</module>
+        <module>websocket-interceptor</module>
+        <module>websocket-simple</module>
+        <module>websocket-web-simple</module>
+        <module>websocket-web</module>
+        <module>websocket-netty</module>
+        <module>websocket-webrtc</module>
     </modules>
 
     <dependencies>

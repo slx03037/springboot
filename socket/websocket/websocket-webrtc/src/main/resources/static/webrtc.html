@@ -1,0 +1,313 @@
+<html>
+
+<head>
+    <title>main</title>
+    <link rel = "stylesheet" href = "https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css"/>
+
+</head>
+
+<style>
+
+    /* 整体样式 */
+
+    body {
+        background: #f0f2f5;
+        padding: 5% 0;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
+    }
+
+    /* 视频容器样式 */
+
+    .video-container {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .video-container:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 通话页面样式 */
+
+    .call-page {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 本地视频样式 */
+
+    #localVideo {
+        width: 200px; /* 设置合适的大小 */
+        height: 200px;
+        position: absolute;
+        top: 15px; /* 放置于右上角 */
+        right: 15px;
+        border-radius: 8px; /* 圆角边框增加视觉效果 */
+        border: 2px solid white; /* 白色边框以突出小窗口 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* 添加阴影以增强立体感 */
+        z-index: 10; /* 确保在大窗口之上 */
+    }
+
+    /* 远程视频样式 */
+
+    #remoteVideo {
+        width: 100%;
+        max-width: 500px;
+        height: 500px;
+        background: black;
+        border-radius: 8px;
+    }
+
+    /* 输入框样式 */
+
+    input[type="text"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 70%;
+        margin-bottom: 10px;
+    }
+
+    /* 按钮样式 */
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    /* 成功按钮样式 */
+
+    .btn-success {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #45a049;
+    }
+
+    /* 失败按钮样式 */
+
+    .btn-danger {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #da190b;
+    }
+
+    body {
+        background: linear-gradient(to right, #ccebff, #fff); /* Light blue gradient */
+        padding: 5% 0;
+        font-family: 'Bubblegum Sans', cursive; /* Example cartoon font */
+        box-sizing: border-box;
+    }
+
+    .call-page {
+        border-radius: 20px; /* Increased roundness */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    }
+
+    .video-container {
+        border-radius: 15px; /* Increased roundness */
+    }
+
+    button {
+        border-radius: 10px; /* Rounded corners for buttons */
+        padding: 15px 30px; /* Adjust padding for larger buttons */
+        font-size: 18px;
+    }
+
+    .btn-success {
+        background-color: #4CAF50; /* Green for call button */
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #f44336; /* Red for hang up button */
+        color: white;
+    }
+
+    #localVideo, #remoteVideo {
+        border: 2px solid #ffebcd; /* Light yellow border for videos */
+    }
+
+
+</style>
+
+<body>
+
+<div id="callPage" class="call-page">
+    <video id="localVideo" autoplay></video>
+    <video id="remoteVideo" autoplay></video>
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <label for="callToUsernameInput"></label><input id="callToUsernameInput" type="text"
+                                                            placeholder="要呼叫的用户名" />
+            <button id="callBtn" class="btn-success btn">开始聊天</button>
+            <button id="hangUpBtn" class="btn-danger btn">结束聊天</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 获取页面元素
+    var localVideo = document.getElementById('localVideo');
+    var remoteVideo = document.getElementById('remoteVideo');
+    var callToUsernameInput = document.getElementById('callToUsernameInput');
+    var callBtn = document.getElementById('callBtn');
+    var hangUpBtn = document.getElementById('hangUpBtn');
+
+    // 声明变量
+    var conn;  // WebSocket连接
+    var yourConn;  // RTCPeerConnection
+    var stream;  // 本地媒体流
+    var connectedUser = null;  // 连接的用户
+
+    // STUN服务器配置
+    var configuration = {
+        "iceServers": [{"urls": "stun:stun.l.google.com:19302"}]
+    };
+
+    // 启动WebSocket连接
+    function startConnection() {
+        var token = localStorage.getItem("token");
+        conn = new WebSocket("ws:xxxxxx:9998/video");
+
+        conn.onopen = () => {
+            console.log("连接到信令服务器");
+            send({ type: "login", token: token });
+        };
+
+        conn.onmessage = (msg) => {
+            var data = JSON.parse(msg.data);
+            console.log("收到消息:", data.type);
+
+            switch (data.type) {
+                case "login":
+                    console.log("登录结果:", data.success ? "成功" : "失败");
+                    break;
+                case "offer":
+                    handleOffer(data.offer, data.name);
+                    break;
+                case "answer":
+                    handleAnswer(data.answer);
+                    break;
+                case "candidate":
+                    handleCandidate(data.candidate);
+                    break;
+                case "leave":
+                    handleLeave();
+                    break;
+            }
+        };
+
+        conn.onerror = (err) => console.error("WebSocket错误:", err);
+    }
+
+    // 发送消息到信令服务器
+    function send(message) {
+        if (connectedUser) {
+            message.name = connectedUser;
+        }
+        conn.send(JSON.stringify(message));
+    }
+
+    // 处理收到的offer
+    function handleOffer(offer, name) {
+        connectedUser = name;
+        yourConn.setRemoteDescription(new RTCSessionDescription(offer));
+        yourConn.createAnswer().then((answer) => {
+            yourConn.setLocalDescription(answer);
+            send({ type: "answer", answer: answer });
+        }).catch(error => console.error("创建answer出错:", error));
+    }
+
+    // 处理收到的answer
+    function handleAnswer(answer) {
+        yourConn.setRemoteDescription(new RTCSessionDescription(answer));
+    }
+
+    // 添加ICE候选到连接
+    function handleCandidate(candidate) {
+        yourConn.addIceCandidate(new RTCIceCandidate(candidate))
+            .catch(e => console.error("添加ICE候选出错:", e));
+    }
+
+    // 处理离开
+    hangUpBtn.addEventListener("click", function () {
+        send({
+            type: "leave"
+        });
+        handleLeave();
+    });
+
+    function handleLeave() {
+        console.log('挂断电话');
+        connectedUser = null;
+        remoteVideo.srcObject = null;
+        yourConn.close();
+        yourConn.onicecandidate = null;
+        yourConn.onaddstream = null;
+    }
+
+    // 获取本地媒体流并启动连接
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then((myStream) => {
+            stream = myStream;
+            localVideo.srcObject = stream;
+
+            yourConn = new RTCPeerConnection(configuration);
+            stream.getTracks().forEach(track => yourConn.addTrack(track, stream));
+
+            yourConn.ontrack = (event) => {
+                remoteVideo.srcObject = event.streams[0];
+            };
+
+            yourConn.onicecandidate = (event) => {
+                if (event.candidate) {
+                    send({ type: "candidate", candidate: event.candidate });
+                }
+            };
+        })
+        .catch(error => console.error("获取媒体流出错:", error));
+
+    // 绑定按钮事件
+    callBtn.onclick = () => {
+        var callToUsername = callToUsernameInput.value;
+        if (callToUsername.length > 0) {
+            connectedUser = callToUsername;
+            yourConn.createOffer().then((offer) => {
+                send({ type: "offer", offer: offer });
+                yourConn.setLocalDescription(offer);
+            }).catch(error => console.error("创建offer出错:", error));
+        }
+    };
+
+    // 页面加载时启动WebSocket连接
+    window.onload = startConnection;
+
+</script>
+
+
+</body>
+
+</html>
