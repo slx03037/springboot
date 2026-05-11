@@ -1,0 +1,7 @@
+server:
+  port: 8002
+
+websocket:
+  pong:
+    schedule:
+      cron: 0 */1 * * * ?

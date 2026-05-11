@@ -10,6 +10,24 @@
     <packaging>pom</packaging>
     <modules>
         <module>websocket-basic</module>
+        <module>websocket-categroy</module>
+        <module>websocket-webflux-web</module>
+        <module>websocket-webflux-simple</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
 </project>
