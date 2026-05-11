@@ -13,6 +13,7 @@
     <modules>
         <module>jwt-basic</module>
         <module>jwt-security</module>
+        <module>jwt-web</module>
     </modules>
 
     <dependencies>
