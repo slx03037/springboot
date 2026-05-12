@@ -19,14 +19,14 @@
 	http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
     <!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
-    <context:component-scan base-package="com.xinwen.desgin">
+    <context:component-scan base-package="com.tools.desgin">
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
     <!--多例bean-->
-    <bean id="sheep01" class="com.xinwen.desgin.spring.test02.Sheep" scope="prototype"/>
+    <bean id="sheep01" class="com.tools.desgin.spring.test02.Sheep" scope="prototype"/>
     <!--单例Bean默认，scope="singleton"-->
-    <bean id="sheep02" class="com.xinwen.desgin.spring.test02.Sheep" />
+    <bean id="sheep02" class="com.tools.desgin.spring.test02.Sheep" />
 
 </beans>
