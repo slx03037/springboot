@@ -10,5 +10,27 @@
     <packaging>pom</packaging>
     <modules>
         <module>shiro-basic</module>
+        <module>shiro-authorization</module>
+        <module>shiro-remember</module>
     </modules>
+
+    <dependencies>
+        <!--SpringBoot 整合 Shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <!-- shiro ehcache (shiro缓存)-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
 </project>
