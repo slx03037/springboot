@@ -27,6 +27,7 @@
         <module>common-utils</module>
         <module>oauth</module>
         <module>sign</module>
+        <module>mail</module>
 
     </modules>
 
@@ -41,6 +42,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>com.xinwen</groupId>

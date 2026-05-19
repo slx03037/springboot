@@ -1,0 +1,15 @@
+spring:
+  mail:
+    host:
+    port: 465
+    username: xxxxx@163.com
+    password: xxxx
+    default-encoding: utf-8
+    protocol: SMTP
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true

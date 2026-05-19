@@ -3,12 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xinwen</groupId>
-        <artifactId>tools</artifactId>
+        <artifactId>mail</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>shiro</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>shiro-basic</module>
-    </modules>
+    <artifactId>mail-basic</artifactId>
+
 </project>
