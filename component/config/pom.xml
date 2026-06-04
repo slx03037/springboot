@@ -7,4 +7,21 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>config</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>config-basic</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

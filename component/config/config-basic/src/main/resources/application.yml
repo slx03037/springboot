@@ -1,0 +1,13 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: spring-boot-async
+
+com:
+  config:
+    groupId: com.shenlx.xinwen
+    service: -spring-boot-async
+             -spring-boot-config02
+             -spring-boot-config03
