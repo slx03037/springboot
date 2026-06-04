@@ -3,25 +3,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xinwen</groupId>
-        <artifactId>component</artifactId>
+        <artifactId>admin-basic</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>actuator</artifactId>
-
-    <packaging>pom</packaging>
-    <modules>
-        <module>actuator-basic</module>
-    </modules>
+    <artifactId>admin-basic-client</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
-        <!-- 如果你是Web项目，需要配合spring-boot-starter-web才能用HTTP端点 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 </project>

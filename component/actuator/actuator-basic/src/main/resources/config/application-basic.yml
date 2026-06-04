@@ -1,0 +1,17 @@
+management:
+  endpoints:
+    web:
+      # 端点的前缀，默认是 /actuator，你可以改成 /monitor 隐藏路径
+      base-path: /actuator
+      # 暴露哪些HTTP端点（* 代表全部，生产环境不要这么用！）
+      exposure:
+        include: "*"
+      #include: health,info,metrics,loggers,env,beans
+  # 单个端点的配置
+  endpoint:
+    health:
+      # 健康检查是否显示详情，默认只返回 UP/DOWN
+      show-details: always
+    env:
+      # 环境变量是否显示值，默认敏感值会被隐藏
+      show-values: always

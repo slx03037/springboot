@@ -28,7 +28,7 @@
         <module>oauth</module>
         <module>sign</module>
         <module>mail</module>
-
+        <module>admin</module>
     </modules>
 
     <dependencies>

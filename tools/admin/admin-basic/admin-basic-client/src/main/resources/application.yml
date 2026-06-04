@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: basic-client
+  boot:
+    admin:
+      client:
+        url: 'http://127.0.0.1:8080'
+        instance:
+          name: basic-client
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+
+server:
+  port: 8081
