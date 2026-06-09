@@ -3,8 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xinwen</groupId>
-        <artifactId>component</artifactId>
+        <artifactId>security</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>amqp</artifactId>
+    <artifactId>security-basic</artifactId>
+
+
 </project>

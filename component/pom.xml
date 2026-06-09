@@ -18,7 +18,6 @@
         <module>batch</module>
         <module>rest</module>
         <module>config</module>
-        <module>amqp</module>
     </modules>
 
 

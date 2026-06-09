@@ -1,0 +1,2 @@
+-- 插入数据
+insert into sys_user (id, user_name, nick_name, `password`, `status`, email, phone_number, sex, avatar, user_type, create_by, create_time, update_by, update_time, del_flag) values (1, 'zhangsan', '张三', '1234', '0', 'hly@itcast.cn', '1312103105', '0', 'http://www.itcast.cn', '1', 1, '2022-03-08 09:12:06', 1, '2022-03-08 09:12:06', 0);

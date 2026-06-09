@@ -1,6 +1,5 @@
 package com.oauth.basic.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,8 +20,8 @@ import java.util.ArrayList;
 @Configuration
 public class SecurityConfigure extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
     //@Autowired
     //private JdbcUserDetailsService jdbcUserDetailsService;
     /**

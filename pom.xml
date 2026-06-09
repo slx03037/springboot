@@ -2,6 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 确保 parent 配置存在 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.5</version>
+        <relativePath/>
+    </parent>
 
     <groupId>com.xinwen</groupId>
     <artifactId>springboot</artifactId>
@@ -32,6 +39,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 锁定 Spring Boot 版本，强制所有模块使用 2.7.5 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.7.5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
@@ -138,6 +153,20 @@
                 <version>2.7.10</version>
             </dependency>
 
+            <!-- Source: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                <version>2.2.8.RELEASE</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!--引入security对oauth2的支持-->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>2.3.4.RELEASE</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -182,8 +211,18 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.5.2</version>
-                <scope>compile</scope>
+                <version>3.5.15</version>
+                <exclusions>
+                    <!-- 排除所有 Spring Boot 传递依赖，避免版本混乱 -->
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-autoconfigure</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-jdbc</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Source: https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -278,24 +317,11 @@
                 <scope>compile</scope>
             </dependency>
 
-            <!-- Source: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-                <version>2.2.8.RELEASE</version>
-                <scope>compile</scope>
-            </dependency>
 
-            <!--引入security对oauth2的支持-->
-            <dependency>
-                <groupId>org.springframework.security.oauth</groupId>
-                <artifactId>spring-security-oauth2</artifactId>
-                <version>2.3.4.RELEASE</version>
-            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>6.2.5</version>
+                <version>5.3.23</version>
             </dependency>
 
 
@@ -402,6 +428,12 @@
                 <groupId>org.jolokia</groupId>
                 <artifactId>jolokia-core</artifactId>
                 <version>1.6.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xinwen</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
 

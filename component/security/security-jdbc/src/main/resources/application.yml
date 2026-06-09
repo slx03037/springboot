@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: security-jdbc-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.73:3306/bs?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: bellon
+    password: 7654321
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+  mapper-locations: classpath:mapper/*.xml # mapper.xml 路径
+  type-aliases-package: com.component.security.advance.web.entity # 实体类包路径
+

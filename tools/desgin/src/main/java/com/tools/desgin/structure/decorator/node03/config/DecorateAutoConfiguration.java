@@ -1,7 +1,8 @@
 package com.tools.desgin.structure.decorator.node03.config;
 
-import com.xinwen.desgin.structure.decorator.node03.handler.AbstractHandler;
-import com.xinwen.desgin.structure.decorator.node03.manager.DecorateManager;
+
+import com.tools.desgin.structure.decorator.node03.handler.AbstractHandler;
+import com.tools.desgin.structure.decorator.node03.manager.DecorateManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

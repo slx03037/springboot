@@ -1,9 +1,7 @@
 package com.grpc.basic.server.client;
 
 
-import com.grpc.basic.common.Product;
-import com.grpc.basic.common.ProductId;
-import com.grpc.basic.common.ProductInfoGrpc;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.junit.jupiter.api.Test;
