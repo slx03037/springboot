@@ -1,7 +1,11 @@
 package com.component.security.advance.web.handler;
 
+import com.component.security.advance.web.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,12 +25,25 @@ import java.io.IOException;
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        //获取请求头中得
         String token = request.getHeader("Authorization");
         log.info("获取到的token为:{}",token);
         if (StringUtils.isNotEmpty(token) && token.startsWith("Bearer ")) {
             token = token.replace("Bearer ", "");
         }
-        //todo 后续根据token作为用户标签，查询请求用户信息和权限
+
+        //后续根据token作为用户标签，查询请求用户信息和权限(token可以使用JWT)
+
+        //token刷新token(验证令牌有效期， 相差不足20分钟，自动刷新 token续期)
+
+        UserDTO userDTO = new UserDTO("admin", "$2a$10$3U6iz34v.C4jMqNOuKDT/OkJ3uQfNf7DDCynfyUzJkDXef1Gsv5AO");
+
+        //将信息赛如(从jwt中获取出)
+
+        //塞入用户认证信息
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDTO, null, userDTO.getAuthorities());
+        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request,response);
     }
 }

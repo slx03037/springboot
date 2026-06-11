@@ -1,6 +1,7 @@
 package com.component.security.advance.web.config;
 
 import com.component.security.advance.web.handler.CustomAuthenticationEntryPoint;
+import com.component.security.advance.web.handler.TokenAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,6 +63,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
+    /**
+     * token认证过滤器
+     */
+    @Autowired
+    private TokenAuthenticationFilter tokenAuthenticationFilter;
+
 
     //权限、登录配置后续扩展
     @Override
@@ -69,9 +76,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             http
                 .csrf().disable()
                     //允许跨域请求，但是在请求之前先校验账号是否存在
-                    .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+                    .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                     //允许跨域请求，但是在请求之前先校验token
-                    //.addFilterBefore(corsFilter, TokenAuthenticationFilter.class)
+                   .addFilterBefore(corsFilter, TokenAuthenticationFilter.class)
                     //退出
                     .addFilterBefore(corsFilter, LogoutFilter.class)
                     // 防止iframe 造成跨域
