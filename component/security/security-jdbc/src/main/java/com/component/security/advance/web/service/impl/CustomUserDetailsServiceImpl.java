@@ -2,6 +2,8 @@ package com.component.security.advance.web.service.impl;
 
 import com.component.security.advance.web.dto.UserDTO;
 import com.component.security.advance.web.entity.UserDO;
+import com.component.security.advance.web.mapper.MenuMapper;
+import com.component.security.advance.web.mapper.RoleMapper;
 import com.component.security.advance.web.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author shenlx
@@ -23,6 +27,12 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private MenuMapper menuMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,8 +51,14 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     }
 
     private UserDetails createUserDetails(UserDO user){
-        UserDTO userDTO = new UserDTO(user.getUsername(), user.getPassword());
+        //角色列表的添加
+        List<String> permsList = menuMapper.findUserMenuById(user.getId());
+        //权限列表的添加
+        List<String> roleKeyList = roleMapper.findRoleNamesByUserId(user.getId());
+
+        UserDTO userDTO = new UserDTO(user.getUsername(), user.getPassword(),permsList,roleKeyList);
         log.info("UserDetails的数据为:{}",userDTO);
+
         return userDTO;
     }
 }

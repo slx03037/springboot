@@ -3,6 +3,6 @@
 <mapper  namespace="com.component.security.advance.web.mapper.UserMapper">
 
     <select id="queryUserByName" parameterType="java.lang.String" resultType="com.component.security.advance.web.entity.UserDO">
-       select user_name as username,phone_number as phoneNumber ,status,nick_name as nickName,email,password from sys_user where user_name=#{username}
+       select id, user_name as username,phone_number as phoneNumber ,status,nick_name as nickName,email,password from sys_user where user_name=#{username}
     </select>
 </mapper>

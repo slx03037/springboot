@@ -5,8 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,28 +27,39 @@ public class UserDTO implements UserDetails {
 
     private String password;
 
-    private boolean accountNonExpired;
 
-    private boolean accountNonLocked;
+    private List<String> perms;
 
-    private boolean credentialsNonExpired;
+    private List<String> roleList;
 
-    private boolean enabled;
-
-    private List<GrantedAuthority> authorities;
-
-    public UserDTO(String username,String password){
+    public UserDTO(String username,String password, List<String> perms,List<String> roleList){
         this.username=username;
         this.password=password;
-        this.accountNonExpired=true;
-        this.accountNonLocked=true;
-        this.credentialsNonExpired=true;
-        this.enabled=true;
+        this.perms=perms;
+        this.roleList=roleList;
     }
 
+    /**
+     * 将权限关键字换成权限对象进行返回
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return  this.authorities;
+        List<SimpleGrantedAuthority> collect = new ArrayList<>();
+        for (String perm : perms) {
+            SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(perm);
+            collect.add(simpleGrantedAuthority);
+        }
+        for(String roleKey : roleList){
+            //角色一定要加ROLE_ 才能匹配到,并要注意大小写
+            SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("ROLE_"+roleKey.toUpperCase());
+            collect.add(simpleGrantedAuthority);
+        }
+//        return perms
+//                .stream()
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
+        return collect;
     }
 
     @Override
@@ -61,21 +74,21 @@ public class UserDTO implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsNonExpired;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return true;
     }
 }

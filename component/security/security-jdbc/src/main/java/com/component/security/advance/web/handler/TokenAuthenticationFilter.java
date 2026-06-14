@@ -1,5 +1,6 @@
 package com.component.security.advance.web.handler;
 
+import com.component.security.advance.web.cache.UserCache;
 import com.component.security.advance.web.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,8 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //获取请求头中得
@@ -32,18 +35,21 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             token = token.replace("Bearer ", "");
         }
 
-        //后续根据token作为用户标签，查询请求用户信息和权限(token可以使用JWT)
+        //todo 后续根据token作为用户标签，查询请求用户信息和权限(token可以使用JWT)
+        //todo token刷新token(验证令牌有效期， 相差不足20分钟，自动刷新 token续期)
+        //todo 将信息赛如(从jwt中获取出)
 
-        //token刷新token(验证令牌有效期， 相差不足20分钟，自动刷新 token续期)
 
-        UserDTO userDTO = new UserDTO("admin", "$2a$10$3U6iz34v.C4jMqNOuKDT/OkJ3uQfNf7DDCynfyUzJkDXef1Gsv5AO");
+        //此方法为本次测试，过期时间和token刷新得操作都没有，后续可以添加redis进行过期时间认证
+        UserDTO userDTO = UserCache.getUser(token);
+        if (userDTO !=null){
+            log.info("用户信息为:{}",userDTO);
+            //塞入用户认证信息
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDTO, null, userDTO.getAuthorities());
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        }
 
-        //将信息赛如(从jwt中获取出)
-
-        //塞入用户认证信息
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDTO, null, userDTO.getAuthorities());
-        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request,response);
     }
 }

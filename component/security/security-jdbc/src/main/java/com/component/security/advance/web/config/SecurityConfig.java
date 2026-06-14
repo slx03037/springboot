@@ -9,12 +9,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.filter.CorsFilter;
@@ -26,6 +28,7 @@ import org.springframework.web.filter.CorsFilter;
  */
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -63,6 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
+
     /**
      * token认证过滤器
      */
@@ -98,7 +104,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .exceptionHandling(exceptions -> exceptions
                             .authenticationEntryPoint(authenticationEntryPoint)   // 未认证 → 401
-                           // .accessDeniedHandler(restAccessDeniedHandler())            // 已认证但无权限 → 403
+                           .accessDeniedHandler(accessDeniedHandler)            // 已认证但无权限 → 403
                     );
 
     }
