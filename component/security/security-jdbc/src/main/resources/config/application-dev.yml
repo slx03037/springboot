@@ -7,9 +7,9 @@ spring:
     name: security-jdbc-server
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.110.154.49:3306/bs?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.169.1.100:3306/bs?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: bellon.123
+    password: 123456
 
 
 mybatis-plus:

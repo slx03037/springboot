@@ -29,6 +29,7 @@
         <module>sign</module>
         <module>mail</module>
         <module>admin</module>
+        <module>sftp</module>
     </modules>
 
     <dependencies>

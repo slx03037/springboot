@@ -1,0 +1,6 @@
+ftp:
+  host: 192.168.xxx.xxx   # FTP服务器地址
+  port: 21                # 端口，默认为21
+  username: your-username
+  password: your-password
+  base-path: /            # 远程服务器上的基础工作目录
