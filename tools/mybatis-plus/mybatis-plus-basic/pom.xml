@@ -3,16 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xinwen</groupId>
-        <artifactId>tools</artifactId>
+        <artifactId>mybatis-plus</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>mybatis</artifactId>
-
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>mybatis-jdbc</module>
-    </modules>
+    <artifactId>mybatis-plus-basic</artifactId>
 
     <dependencies>
         <dependency>
@@ -21,9 +15,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <scope>compile</scope>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
+
+
     </dependencies>
 </project>
