@@ -447,6 +447,12 @@
                 <artifactId>commons-net</artifactId>
                 <version>3.11.0</version> <!-- 建议使用较新版本 -->
             </dependency>
+
+            <dependency>
+                <groupId>com.github.wenhao</groupId>
+                <artifactId>jpa-spec</artifactId>
+                <version>3.1.0</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
