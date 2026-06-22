@@ -7,5 +7,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>batch</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>batch-basic</module>
+    </modules>
 
 </project>
