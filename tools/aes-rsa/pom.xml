@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>aes-rsa-basic</module>
+        <module>aes-rsa-upgrade</module>
     </modules>
 
     <dependencies>

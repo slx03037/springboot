@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-security-demo
+  data:
+    redis:
+      host: 192.168.1.73
+      port: 6379
+      password: 123456
+      database: 0
+      timeout: 5000ms
+
+api:
+  security:
+    # 应用密钥（用于签名）
+    app-secret: ${API_APP_SECRET:your-256-bit-secret-key-here}
+    # 密钥轮换周期（小时）
+    key-rotate-hours: 24
+    # 允许的最大时间差（秒）
+    max-time-diff: 300
+
+logging:
+  level:
+    com.example.apisecurity: DEBUG
