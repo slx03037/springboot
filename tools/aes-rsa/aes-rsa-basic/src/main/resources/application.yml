@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: api-encrypt-demo
+server:
+  port: 8080
+
+# RSA密钥配置（实际生产环境建议用配置中心加密存储）
+rsa:
+  public-key: 替换为生成的RSA公钥字符串（Base64编码）
+  private-key: 替换为生成的RSA私钥字符串（Base64编码）
+
+# 不需要加密的接口（白名单）
+encrypt:
+  exclude-paths: /api/public/**, /api/rsa/publicKey

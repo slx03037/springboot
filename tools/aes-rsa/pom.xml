@@ -7,5 +7,21 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>aes-rsa</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>aes-rsa-basic</module>
+    </modules>
 
+    <dependencies>
+        <!-- 加密工具包（提供RSA、AES加密工具） -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk18on</artifactId>
+        </dependency>
+        <!-- JSON工具包 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
 </project>
