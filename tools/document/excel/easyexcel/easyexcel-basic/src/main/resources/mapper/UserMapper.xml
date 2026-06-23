@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tools.document.excel.easyexcel.basic.web.mapper.UserMapper">
+    <select id="excelUserList" resultType="com.tools.document.excel.easyexcel.basic.web.entity.UserDO">
+  select id,
+  `username` ,
+  `password` ,
+  `nickname`,
+  `birthday` ,
+  `phone` ,
+  `height`,
+  `gender` from tbl_user
+    </select>
+</mapper>
