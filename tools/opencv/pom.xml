@@ -7,4 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>opencv</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>opencv-basic</module>
+    </modules>
+
+
 </project>

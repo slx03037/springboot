@@ -494,6 +494,21 @@
                 <version>5.2.0</version>
             </dependency>
 
+            <!-- Source: https://mvnrepository.com/artifact/org.opencv/opencv -->
+            <dependency>
+                <groupId>org.opencv</groupId>
+                <artifactId>opencv</artifactId>
+                <version>4.9.0</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- Source: https://mvnrepository.com/artifact/org.openpnp/opencv -->
+            <dependency>
+                <groupId>org.openpnp</groupId>
+                <artifactId>opencv</artifactId>
+                <version>4.5.5-1</version>
+                <scope>compile</scope>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>

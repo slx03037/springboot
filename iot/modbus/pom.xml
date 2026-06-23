@@ -7,4 +7,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>modbus</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>modbus-basic</module>
+    </modules>
 </project>

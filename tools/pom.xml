@@ -30,6 +30,7 @@
         <module>mail</module>
         <module>admin</module>
         <module>sftp</module>
+        <module>aes-rsa</module>
     </modules>
 
     <dependencies>
