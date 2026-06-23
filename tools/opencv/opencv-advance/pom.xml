@@ -3,15 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xinwen</groupId>
-        <artifactId>tools</artifactId>
+        <artifactId>opencv</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>opencv</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>opencv-basic</module>
-        <module>opencv-advance</module>
-    </modules>
+    <artifactId>opencv-advance</artifactId>
 
-
+    <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>org.opencv</groupId>-->
+<!--            <artifactId>opencv</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+    </dependencies>
 </project>
