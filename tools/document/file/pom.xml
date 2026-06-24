@@ -8,4 +8,7 @@
     </parent>
     <artifactId>file</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>file-basic</module>
+    </modules>
 </project>
