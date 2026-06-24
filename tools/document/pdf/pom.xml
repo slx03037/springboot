@@ -10,5 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>pdf-box</module>
+        <module>itextpdf</module>
     </modules>
 </project>
