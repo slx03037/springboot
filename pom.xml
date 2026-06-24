@@ -668,6 +668,118 @@
                 <artifactId>jaxb-impl</artifactId>
                 <version>2.3.0</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>org.msgpack</groupId>
+                <artifactId>msgpack</artifactId>
+                <version>0.6.11</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <!--            <version>3.21.9</version>-->
+                <version>3.25.3</version>
+            </dependency>
+            <!-- marshalling -->
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling</artifactId>
+                <version>2.0.12.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-river</artifactId>
+                <version>2.0.12.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.marshalling</groupId>
+                <artifactId>jboss-marshalling-serial</artifactId>
+                <version>2.0.0.Beta2</version>
+            </dependency>
+
+            <!--jibx-->
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-run</artifactId>
+                <version>1.4.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jibx/jibx-extras -->
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-extras</artifactId>
+                <version>1.4.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jibx/jibx-bind -->
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-bind</artifactId>
+                <version>1.4.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jibx/jibx-tools -->
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-tools</artifactId>
+                <version>1.4.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jibx/jibx-schema -->
+            <dependency>
+                <groupId>org.jibx</groupId>
+                <artifactId>jibx-schema</artifactId>
+                <version>1.4.2</version>
+            </dependency>
+            <!--BECL-->
+            <dependency>
+                <groupId>org.apache.bcel</groupId>
+                <artifactId>bcel</artifactId>
+                <version>6.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.activation</groupId>
+                <artifactId>jakarta.activation-api</artifactId>
+                <version>2.1.2</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>2.7.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>4.0.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.zookeeper</groupId>
+                        <artifactId>zookeeper</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.4.6</version>
+            </dependency>
+
+
         </dependencies>
 
     </dependencyManagement>

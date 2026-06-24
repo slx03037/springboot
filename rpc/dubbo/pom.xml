@@ -9,4 +9,8 @@
     <artifactId>dubbo</artifactId>
 
     <packaging>pom</packaging>
+    <modules>
+        <module>dubbo-web</module>
+        <module>dubbo-realize</module>
+    </modules>
 </project>
