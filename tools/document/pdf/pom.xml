@@ -8,4 +8,7 @@
     </parent>
     <artifactId>pdf</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>pdf-box</module>
+    </modules>
 </project>
