@@ -1,4 +1,4 @@
-package com.tools.pdf.box.web.box;
+package com.tools.pdf.box.web.controller;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
