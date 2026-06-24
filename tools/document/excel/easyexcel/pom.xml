@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>easyexcel-basic</module>
+        <module>easyexcel-async</module>
+        <module>easyexcel-batch</module>
     </modules>
 
     <dependencies>

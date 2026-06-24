@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tools.excel.easyexcel.async.web.mapper.ExportTaskMapper">
+
+    <resultMap id="BaseResultMap" type="com.tools.excel.easyexcel.async.web.entity.ExportTaskEntity">
+        <id property="id" column="id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="businessTypeCode" column="business_type_code"/>
+        <result property="businessTypeName" column="business_type_name"/>
+        <result property="exportParam" column="export_param"/>
+        <result property="taskStatusCode" column="task_status_code"/>
+        <result property="taskStatusName" column="task_status_name"/>
+        <result property="fileName" column="file_name"/>
+        <result property="filePath" column="file_path"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <insert id="addExportTask" parameterType="com.tools.excel.easyexcel.async.web.entity.ExportTaskEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO export_task(task_id,
+                                business_type_code,
+                                business_type_name,
+                                export_param,
+                                task_status_code,
+                                task_status_name,
+                                file_name,
+                                file_path,
+                                create_user,
+                                create_time,
+                                update_user,
+                                update_time)
+        VALUES (#{taskId},
+                #{businessTypeCode},
+                #{businessTypeName},
+                #{exportParam},
+                #{taskStatusCode},
+                #{taskStatusName},
+                #{fileName},
+                #{filePath},
+                #{createUser},
+                #{createTime},
+                #{updateUser},
+                #{updateTime})
+    </insert>
+
+    <update id="updateExportTask">
+        UPDATE export_task
+        SET
+        <if test="taskStatusCode != null and taskStatusCode !=''">
+            task_status_code = #{taskStatusCode},
+        </if>
+        <if test="taskStatusName != null and taskStatusName !=''">
+            task_status_name = #{taskStatusName},
+        </if>
+        <if test="filePath != null and filePath !=''">
+            file_path = #{filePath},
+        </if>
+        update_time = NOW()
+        WHERE task_id = #{taskId}
+    </update>
+</mapper>
