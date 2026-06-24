@@ -3,15 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xinwen</groupId>
-        <artifactId>rpc</artifactId>
+        <artifactId>dubbo-basic</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>dubbo</artifactId>
+    <artifactId>dubbo-basic-provider</artifactId>
 
-    <packaging>pom</packaging>
-    <modules>
-        <module>dubbo-web</module>
-        <module>dubbo-realize</module>
-        <module>dubbo-basic</module>
-    </modules>
 </project>
