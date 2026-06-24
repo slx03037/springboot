@@ -9,11 +9,7 @@
     <artifactId>netty-basic</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.msgpack</groupId>
             <artifactId>msgpack</artifactId>
