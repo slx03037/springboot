@@ -5,15 +5,18 @@ import com.netty.basic.web.netty.agreement.datastructure.MessageType;
 import com.netty.basic.web.netty.agreement.datastructure.NettyMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * @author shenlx
  * @description 握手请求
  * @date 2024/4/1 10:11
  */
-@Slf4j
+
 public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
+    private static final Log log = LogFactory.getLog(LoginAuthReqHandler.class);
 
     /**
      * 连接建立时，发起认证
